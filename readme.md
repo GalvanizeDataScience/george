@@ -18,3 +18,10 @@ Test that a sprint contains all of its components.
 ## Installing
 
     sudo python setup.py develop
+
+## Organization
+George expects a particular structure inside of sprints.
+
+* Tests are run with nose (Python) or Urchin (shell).
+* There is a submodule called `data`.
+* ...
