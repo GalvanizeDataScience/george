@@ -1,2 +1,17 @@
 #!/usr/bin/env python
-print 33
+import sys
+
+def usage():
+    print '%s [init|test]' % sys.argv[0]
+    exit(1)
+
+if len(sys.argv) != 2:
+    usage()
+elif sys.argv[1] not in {'init','test'}:
+    usage()
+elif sys.argv[1] == 'test':
+    import nose
+    import george.test
+    nose.run(george.test)
+elif sys.argv[1] == 'init':
+    raise NotImplementedError
