@@ -19,6 +19,11 @@ Test that a sprint contains all of its components.
 
     sudo python setup.py develop
 
+## Running George's tests
+These test the george program, not the various sprints.
+
+    nosetests
+
 ## Organization
 George expects a particular structure inside of sprints.
 
