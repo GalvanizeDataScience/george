@@ -2,6 +2,7 @@ George
 =======
 George is a set of utilities for Zipfian Academy curriculum development.
 
+## Running
 Create a sprint.
 
     george init
@@ -9,3 +10,7 @@ Create a sprint.
 Test that a sprint contains all of its components.
 
     george test
+
+## Installing
+
+    sudo python setup.py develop
