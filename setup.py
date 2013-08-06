@@ -1,3 +1,4 @@
+import os
 import setuptools # so we can `./setup.py develop`
 
 setuptools.setup(
@@ -12,7 +13,7 @@ setuptools.setup(
     license='MIT License',
     keywords='datascience education cli',
 
-    url='http://ufs.cc/',
+    url='http://zipfianacademy.com',
     download_url='https://github.com/zipfian/george',
 
     classifiers=[
@@ -22,6 +23,9 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python'
+    ],
+    scripts = [
+        os.path.join('bin', 'george'),
     ],
 
     include_package_data=True,
