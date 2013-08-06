@@ -24,7 +24,32 @@ def test_test_has_data_submodule():
     open(os.path.join('data', '.git'), 'w').write('bar')
     check.test_has_data_submodule()
 
-def test_python_init():
+def test_check_has_directory():
+    n.assert_raises(AssertionError, check.check_has_directory)
+    os.mkdir('code')
+    check.check_has_directory('code')
+
+def test_test_has_directories():
+    n.assert_raises(AssertionError, check.test_has_directories)
+    for directory_name in ['code', 'data', 'lib', 'test']:
+        os.mkdir(directory_name)
+    check.test_has_directories()
+
+def test_test_has_readme():
+    n.assert_raises(AssertionError, check.test_has_readme)
+    open('readme.md', 'w').write('foo')
+    check.test_has_readme()
+
+def test_check_readme_has_section():
+    n.assert_raises(AssertionError, check.check_readme_has_section)
+
+    open('readme.md', 'w').write('Foo')
+    n.assert_raises(AssertionError, check.check_readme_has_section)
+
+    open('readme.md', 'w').write('## Foo')
+    check.check_readme_has_section('Foo')
+
+def test_test_python_init():
     os.mkdir('code')
     os.mkdir('test')
     check.test_python_init()
@@ -43,4 +68,3 @@ def test_python_init():
 
     open(os.path.join('code', '__init__.py'), 'w').write('foo')
     check.test_python_init()
-

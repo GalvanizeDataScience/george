@@ -33,3 +33,15 @@ def test_python_test_coverage():
 @n.nottest
 def test_shell_test_coverage():
     pass
+
+def check_has_directory():
+    raise NotImplementedError
+
+def test_has_directories():
+    raise NotImplementedError
+
+def test_has_readme():
+    raise NotImplementedError
+
+def check_readme_has_section():
+    raise NotImplementedError
