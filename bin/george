@@ -14,8 +14,7 @@ elif [ "$1" = check ]; then
   # nose discovers tests in the current directory,
   # but we want to load them from another directory,
   # so we make a symlink in the current directory.
-  module=$(echo "$0"|sed "s_bin/george__")
-  nosetests "$module/george/check.py"
+  nosetests ~/Zipfian/george/george/check.py
 else
   usage
 fi
