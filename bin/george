@@ -7,9 +7,9 @@ def usage():
 
 if len(sys.argv) != 2:
     usage()
-elif sys.argv[1] not in {'init','test'}:
+elif sys.argv[1] not in {'init','check'}:
     usage()
-elif sys.argv[1] == 'test':
+elif sys.argv[1] == 'check':
     import nose
     import george.test
     nose.run(george.test)
