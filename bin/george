@@ -11,7 +11,8 @@ elif sys.argv[1] not in {'init','check'}:
     usage()
 elif sys.argv[1] == 'check':
     import nose, os
-    nose.main(argv = [os.path.join(__file__, '..', 'george', 'check.py')])
+    # nose.main(argv = [os.path.join(__file__, '..', 'george', 'check.py')])
+    # nose.main(argv = ['/home/tlevine/Zipfian/george/george/check.py'])
 elif sys.argv[1] == 'init':
     import george.init
     george.init.main()
