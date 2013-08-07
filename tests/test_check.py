@@ -13,7 +13,7 @@ def test_test_has_data_submodule():
     check.test_has_data_submodule()
 
 def test_check_has_directory():
-    n.assert_raises(AssertionError, check.check_has_directory)
+    n.assert_raises(AssertionError, lambda: check.check_has_directory('code'))
     os.mkdir('code')
     check.check_has_directory('code')
 
@@ -23,10 +23,10 @@ def test_test_has_directories():
         os.mkdir(directory_name)
     check.test_has_directories()
 
-def test_test_has_readme():
-    n.assert_raises(AssertionError, check.test_has_readme)
+def test_check_has_file():
+    n.assert_raises(AssertionError, lambda: check.check_has_file('readme.md'))
     open('readme.md', 'w').write('foo')
-    check.test_has_readme()
+    check.check_has_file('readme.md')
 
 def test_check_readme_has_section():
     n.assert_raises(AssertionError, check.check_readme_has_section)
@@ -59,5 +59,6 @@ def test_test_python_init():
 
 def test_test_has_a_test():
     n.assert_raises(AssertionError, check.test_has_a_test)
-    open(os.path.join('test', 'foo'))
+    os.mkdir('test')
+    open(os.path.join('test', 'foo'), 'w').write('')
     check.test_has_a_test()
