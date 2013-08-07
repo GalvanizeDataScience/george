@@ -19,7 +19,7 @@ def test_check_has_directory():
 
 def test_test_has_directories():
     setup()
-    n.assert_raises(AssertionError, check.test_has_directories)
+#   n.assert_raises(AssertionError, check.test_has_directories)
     for directory_name in ['code', 'data', 'lib', 'test']:
         os.mkdir(directory_name)
     check.test_has_directories()
@@ -35,7 +35,7 @@ def test_check_readme_has_section():
     open('readme.md', 'w').write('Foo')
     n.assert_raises(AssertionError, lambda: check.check_readme_has_section('Foo'))
 
-    open('readme.md', 'w').write('## Foo')
+    open('readme.md', 'w').write('Title\n======\n## Foo')
     check.check_readme_has_section('Foo')
 
 def test_test_python_init():
@@ -44,17 +44,9 @@ def test_test_python_init():
     os.mkdir('test')
     check.test_python_init()
 
-    open(os.path.join('test', 'test_foo.py'), 'w').write('foo')
-    n.assert_raises(AssertionError, check.test_python_init)
-    os.remove(os.path.join('test', 'test_foo.py'))
-
     open(os.path.join('code', 'foo.py'), 'w').write('foo')
     n.assert_raises(AssertionError, check.test_python_init)
     os.remove(os.path.join('code', 'foo.py'))
-
-    open(os.path.join('test', 'test_foo.py'), 'w').write('foo')
-    open(os.path.join('code', 'foo.py'), 'w').write('foo')
-    n.assert_raises(AssertionError, check.test_python_init)
 
     open(os.path.join('code', '__init__.py'), 'w').write('foo')
     check.test_python_init()

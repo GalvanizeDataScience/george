@@ -50,7 +50,7 @@ def test_has_files():
 
 def check_readme_has_section(section):
     readme = open('readme.md').read()
-    assert_in('\n## %s' % section, readme)
+    n.assert_in('\n## %s' % section, readme)
 
 def test_has_a_test():
     if os.path.isdir('test'):
