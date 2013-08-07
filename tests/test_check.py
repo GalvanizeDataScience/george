@@ -18,6 +18,7 @@ def test_check_has_directory():
     check.check_has_directory('code')
 
 def test_test_has_directories():
+    setup()
     n.assert_raises(AssertionError, check.test_has_directories)
     for directory_name in ['code', 'data', 'lib', 'test']:
         os.mkdir(directory_name)
