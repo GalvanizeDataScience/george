@@ -1,31 +1,21 @@
-#!/usr/bin/env python
-import sys
+#!/bin/sh
 
-def usage():
-    print '%s [init|check]' % sys.argv[0]
-    exit(1)
+usage() {
+  echo "$0 [init|check]"
+  exit 1
+}
 
-if len(sys.argv) != 2:
-    usage()
-elif sys.argv[1] not in {'init','check'}:
-    usage()
-elif sys.argv[1] == 'check':
-    import nose, os
-
-    # This is a very disgusting hack.
-    # nose discovers tests in the current directory,
-    # but we want to load them from another directory,
-    # so we make a symlink in the current directory.
-
-    module = os.path.split(os.path.split(__file__)[0])[0]
-    os.symlink(os.path.join(module, 'george', 'check.py'), 'check.py')
-
-    import check
-    nose.run(check)
-
-    os.remove('check.py')
-    os.remove('check.pyc')
-
-elif sys.argv[1] == 'init':
-    import george.init
-    george.init.main()
+if test "$#" -ne 1; then
+  usage
+elif [ "$1" = init ]; then
+  python -c 'import george.init;george.init.main()'
+elif [ "$1" = check ]; then
+  # This is a very disgusting hack.
+  # nose discovers tests in the current directory,
+  # but we want to load them from another directory,
+  # so we make a symlink in the current directory.
+  module=$(echo "$0"|sed "s_bin/george__")
+  nosetests "$module/george/check.py"
+else
+  usage
+fi
