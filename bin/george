@@ -13,7 +13,7 @@ elif [ "$1" = check ]; then
   # This is a very disgusting hack.
   # nose discovers tests in the current directory,
   # but we want to load them from another directory,
-  # so we make a symlink in the current directory.
+  # so we hardcode that other directory.
   nosetests ~/Zipfian/george/george/check.py
 else
   usage
