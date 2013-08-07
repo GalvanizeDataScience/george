@@ -10,3 +10,7 @@ def readme():
     for section in ['Overview', 'References', 'Goals', 'Assignment', 'Extra Credit', 'Glossary']:
         fp.write('\n## %s\n' % section)
     fp.close()
+
+def main():
+    directories()
+    readme()

@@ -14,4 +14,5 @@ elif sys.argv[1] == 'test':
     import george.test
     nose.run(george.test)
 elif sys.argv[1] == 'init':
-    raise NotImplementedError
+    import george.init
+    george.init.main()
