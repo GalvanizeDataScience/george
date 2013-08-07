@@ -2,7 +2,7 @@
 import sys
 
 def usage():
-    print '%s [init|test]' % sys.argv[0]
+    print '%s [init|check]' % sys.argv[0]
     exit(1)
 
 if len(sys.argv) != 2:
@@ -11,8 +11,8 @@ elif sys.argv[1] not in {'init','check'}:
     usage()
 elif sys.argv[1] == 'check':
     import nose
-    import george.test
-    nose.run(george.test)
+    import george.check
+    nose.run(george.check)
 elif sys.argv[1] == 'init':
     import george.init
     george.init.main()
