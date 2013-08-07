@@ -35,7 +35,7 @@ def test_shell_test_coverage():
     pass
 
 def check_has_directory(dirname):
-    n.assert_true(os.path.isfile(dirname))
+    n.assert_true(os.path.isdir(dirname))
 
 def test_has_directories():
     for dirname in ['code', 'data', 'lib', 'test']:
@@ -48,8 +48,9 @@ def test_has_files():
     for filename in ['readme.md', 'slides.md']:
         yield check_has_file, filename
 
-def check_readme_has_section():
-    raise NotImplementedError
+def check_readme_has_section(section):
+    readme = open('readme.md').read()
+    assert_in('\n## %s' % section, readme)
 
 def test_has_a_test():
     if os.path.isdir('test'):

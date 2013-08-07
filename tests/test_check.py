@@ -29,15 +29,16 @@ def test_check_has_file():
     check.check_has_file('readme.md')
 
 def test_check_readme_has_section():
-    n.assert_raises(AssertionError, check.check_readme_has_section)
+    n.assert_raises(AssertionError, lambda: check.check_readme_has_section('Foo'))
 
     open('readme.md', 'w').write('Foo')
-    n.assert_raises(AssertionError, check.check_readme_has_section)
+    n.assert_raises(AssertionError, lambda: check.check_readme_has_section('Foo'))
 
     open('readme.md', 'w').write('## Foo')
     check.check_readme_has_section('Foo')
 
 def test_test_python_init():
+    setup()
     os.mkdir('code')
     os.mkdir('test')
     check.test_python_init()
@@ -58,6 +59,7 @@ def test_test_python_init():
     check.test_python_init()
 
 def test_test_has_a_test():
+    setup()
     n.assert_raises(AssertionError, check.test_has_a_test)
     os.mkdir('test')
     open(os.path.join('test', 'foo'), 'w').write('')
