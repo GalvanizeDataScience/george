@@ -11,9 +11,9 @@ Scaffold a sprint.
 
     george init
 
-Test that a sprint contains all of its components.
+Check that a sprint contains all of its components.
 
-    george test
+    george check
 
 ## Installing
 

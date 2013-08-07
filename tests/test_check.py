@@ -56,3 +56,8 @@ def test_test_python_init():
 
     open(os.path.join('code', '__init__.py'), 'w').write('foo')
     check.test_python_init()
+
+def test_test_has_a_test():
+    n.assert_raises(AssertionError, check.test_has_a_test)
+    open(os.path.join('test', 'foo'))
+    check.test_has_a_test()
