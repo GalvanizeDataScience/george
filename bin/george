@@ -11,8 +11,21 @@ elif sys.argv[1] not in {'init','check'}:
     usage()
 elif sys.argv[1] == 'check':
     import nose, os
-    # nose.main(argv = [os.path.join(__file__, '..', 'george', 'check.py')])
-    # nose.main(argv = ['/home/tlevine/Zipfian/george/george/check.py'])
+
+    # This is a very disgusting hack.
+    # nose discovers tests in the current directory,
+    # but we want to load them from another directory,
+    # so we make a symlink in the current directory.
+
+    module = os.path.split(os.path.split(__file__)[0])[0]
+    os.symlink(os.path.join(module, 'george', 'check.py'), 'check.py')
+
+    import check
+    nose.run(check)
+
+    os.remove('check.py')
+    os.remove('check.pyc')
+
 elif sys.argv[1] == 'init':
     import george.init
     george.init.main()
