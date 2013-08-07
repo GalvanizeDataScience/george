@@ -10,9 +10,8 @@ if len(sys.argv) != 2:
 elif sys.argv[1] not in {'init','check'}:
     usage()
 elif sys.argv[1] == 'check':
-    import nose
-    import george.check
-    nose.run(george.check)
+    import nose, os
+    nose.main(argv = [os.path.join(__file__, '..', 'george', 'check.py')])
 elif sys.argv[1] == 'init':
     import george.init
     george.init.main()
