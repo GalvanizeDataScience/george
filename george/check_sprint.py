@@ -15,7 +15,7 @@ def suite():
         add_test(_suite, func)
 
     for dirname in ['code', 'data', 'lib', 'test']:
-        add_test(_suite, lambda: func(dirname))
+        add_test(_suite, lambda: check_has_directory(dirname))
 
     for filename in ['readme.md', 'slides.md']:
         add_test(_suite, lambda: check_has_file(filename))
