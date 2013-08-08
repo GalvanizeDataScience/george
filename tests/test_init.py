@@ -1,7 +1,7 @@
 import os
 import nose.tools as n
 
-from _helpers import setup, teardown
+from _sandbox import setup, teardown
 from george import init
 
 def test_directories():
