@@ -2,7 +2,7 @@ import os
 import shutil
 import nose.tools as n
 
-from _helpers import setup, teardown
+from _sandbox import setup, teardown
 from george import check_sprint
 
 def test_check_has_directory():
