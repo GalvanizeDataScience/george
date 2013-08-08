@@ -1,22 +1,19 @@
-#!/bin/sh
+#!/usr/bin/env python
+import sys
 
-usage() {
-  echo "$0 [init-sprint|check-sprint|check-project]"
-  exit 1
-}
+def usage():
+    print "%s [init-sprint|check-sprint|check-project]" % sys.argv[0]
+    exit(1)
 
-if test "$#" -ne 1; then
-  usage
-elif [ "$1" = 'init-sprint' ]; then
-  python -c 'import george.init;george.init.main()'
-elif [ "$1" = 'check-sprint' ]; then
-  # This is a very disgusting hack.
-  # nose discovers tests in the current directory,
-  # but we want to load them from another directory,
-  # so we hardcode that other directory.
-  nosetests ~/Zipfian/george/george/check_sprint.py
-elif [ "$1" = 'check-project' ]; then
-  nosetests ~/Zipfian/george/george/check_project.py
-else
-  usage
-fi
+if len(sys.argv) != 2:
+    usage()
+elif sys.argv[1] == 'init-sprint':
+    import george.init
+    george.init.main()
+elif sys.argv[1] == 'check-sprint':
+    import george.check_sprint
+    george.check_sprint.main()
+#elif [ "$1" = 'check-project' ]; then
+#    nosetests ~/Zipfian/george/george/check_project.py
+else:
+    usage()

@@ -1,5 +1,21 @@
-import nose.tools as n
+from unittest import TestCase, TestLoader, TextTestRunner
 import os
+import nose.tools as n
+
+
+class TestSprint(TestCase):
+    def test_python_init(self):
+        test_python_init()
+    def test_python_files_correspond(self):
+        test_python_files_correspond()
+    def test_shell_files_correspond(self):
+        test_shell_files_correspond()
+    def test_has_directories(self):
+        test_has_directories()
+    def test_has_files(self):
+        test_has_files()
+    def test_has_a_test(self):
+        test_has_a_test()
 
 def test_python_init():
     'If there are any python files in the code directory, there should be an __init__.py'
@@ -52,3 +68,7 @@ def test_has_a_test():
         n.assert_true(len(os.listdir('test')) > 0)
     else:
         raise AssertionError('There is no test directory.')
+
+def main():
+    suite = TestLoader().loadTestsFromTestCase(TestSprint)
+    TextTestRunner(verbosity=2).run(suite)
