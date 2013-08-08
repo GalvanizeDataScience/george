@@ -13,7 +13,8 @@ elif sys.argv[1] == 'init-sprint':
 elif sys.argv[1] == 'check-sprint':
     import george.check_sprint
     george.check_sprint.main()
-#elif [ "$1" = 'check-project' ]; then
-#    nosetests ~/Zipfian/george/george/check_project.py
+elif sys.argv[1] == 'check-project':
+    import george.check_project
+    george.check_project.main()
 else:
     usage()
