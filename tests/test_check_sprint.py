@@ -10,13 +10,6 @@ def test_check_has_directory():
     os.mkdir('code')
     check_sprint.check_has_directory('code')
 
-def test_test_has_directories():
-    setup()
-#   n.assert_raises(AssertionError, check_sprint.test_has_directories)
-    for directory_name in ['code', 'lib', 'test']:
-        os.mkdir(directory_name)
-    check_sprint.test_has_directories()
-
 def test_check_has_file():
     n.assert_raises(AssertionError, lambda: check_sprint.check_has_file('readme.md'))
     open('readme.md', 'w').write('foo')
