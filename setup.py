@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import setuptools # so we can `./setup.py develop`
 

@@ -2,31 +2,72 @@ George
 =======
 George is a set of utilities for Zipfian Academy curriculum development.
 
+## Organization
+George expects a particular structure.
+
+* Each project is a directory that contains
+  * `readme.md`
+  * a git submodule called `data`.
+  * a few sprint directories
+
+* Each sprint is a directory that contains
+  * Exercise code stubs in `code`
+  * Corresponding tests in `test`, written to be run by
+      nose (Python), Urchin (shell) or testthat (R).
+  * `slides.md` containing an outline of the lecture,
+      intended to be compiled with reveal.js
+  * `readme.md` containing these sections
+    * A
+    * B
+    * C
+    * ...
+
 ## Running
 Enter the sprint's directory.
 
-    cd random-forests-sprint
+    cd nytimes
+
+Make the data submodule
+
+    git submodule add git@github.com:zipfian/data-nytimes.git data
 
 Scaffold a sprint.
 
-    george init
+    mkdir using-json-apis
+    george init-sprint
 
-Check that a sprint contains all of its components.
+As you're working on the sprint, check that a sprint contains all of its components.
 
-    george check
+    george check-sprint
+
+And check that the project is complete.
+
+    cd ..
+    george check-project
 
 ## Installing
 
-    sudo python setup.py develop
+    pip install .
 
-## Running George's tests
-These test the george program, not the various sprints.
+## Development
+
+### Fancy installation
+You can install `george` with `./setup.py develop` so that you'll always be using
+the latest version of the george python library, but that doesn't set up the `bin/george`
+file in `/usr/bin` to be updated when you edit it.
+
+### Running George's tests
+Let's talk about three layers of tests.
+
+1. Each sprint contains tests that students use to see how far they've gone in their work.
+    These are written in python (nose), shell (urchin) or R (testthat).
+2. George checks that the first layer of tests exists and that the tests correspond to the code stubs.
+    These are written in python's standard unittest library.
+3. There are tests of the george program to make sure that the second layer of tests work as intended.
+    These are written in nose.
+
+Run unit tests of the george program (test layer three) like so.
 
     nosetests
 
-## Organization
-George expects a particular structure inside of sprints.
-
-* Tests are run with nose (Python) or Urchin (shell).
-* There is a submodule called `data`.
-* ...
+We don't have a good system for integration tests on the command-line interface.
