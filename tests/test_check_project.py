@@ -2,7 +2,7 @@ import os
 import shutil
 import nose.tools as n
 
-from _helpers import setup, teardown
+from _sandbox import setup, teardown
 from george import check_project
 
 def test_test_has_data_submodule():
@@ -11,6 +11,3 @@ def test_test_has_data_submodule():
     os.mkdir('data')
     open(os.path.join('data', '.git'), 'w').write('bar')
     check_project.test_has_data_submodule()
-
-
-

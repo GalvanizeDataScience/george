@@ -1,21 +1,26 @@
-from unittest import TestCase, TestLoader, TextTestRunner
+from unittest import TestSuite, TextTestRunner
 import os
 import nose.tools as n
+from _helpers import add_test
 
+def suite():
+    _suite = TestSuite()
 
-class CheckSprint(TestCase):
-    def test_python_init(self):
-        test_python_init()
-    def test_python_files_correspond(self):
-        test_python_files_correspond()
-    def test_shell_files_correspond(self):
-        test_shell_files_correspond()
-    def test_has_directories(self):
-        test_has_directories()
-    def test_has_files(self):
-        test_has_files()
-    def test_has_a_test(self):
-        test_has_a_test()
+    for func in [
+        test_python_init,
+        test_python_files_correspond,
+        test_shell_files_correspond,
+        test_has_a_test,
+    ]:
+        add_test(_suite, func)
+
+    for dirname in ['code', 'data', 'lib', 'test']:
+        add_test(_suite, lambda: func(dirname))
+
+    for filename in ['readme.md', 'slides.md']:
+        add_test(_suite, lambda: check_has_file(filename))
+
+    return _suite
 
 def test_python_init():
     'If there are any python files in the code directory, there should be an __init__.py'
@@ -48,16 +53,8 @@ def test_shell_test_coverage():
 def check_has_directory(dirname):
     n.assert_true(os.path.isdir(dirname))
 
-def test_has_directories():
-    for dirname in ['code', 'data', 'lib', 'test']:
-        yield check_has_directory, dirname
-
 def check_has_file(filename):
     n.assert_true(os.path.isfile(filename))
-
-def test_has_files():
-    for filename in ['readme.md', 'slides.md']:
-        yield check_has_file, filename
 
 def check_readme_has_section(section):
     readme = open('readme.md').read()
@@ -70,5 +67,4 @@ def test_has_a_test():
         raise AssertionError('There is no test directory.')
 
 def main():
-    suite = TestLoader().loadTestsFromTestCase(CheckSprint)
-    TextTestRunner(verbosity=2).run(suite)
+    TextTestRunner(verbosity=2).run(suite())
