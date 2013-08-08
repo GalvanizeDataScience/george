@@ -1,5 +1,7 @@
 import os
 import uuid
+import unittest
+
 ROOT = os.getcwd()
 
 def setup():
@@ -12,3 +14,10 @@ def teardown():
     tmp = os.getcwd()
     os.chdir(ROOT)
 
+
+class Sandbox(unittest.TestCase):
+    def setUp(self):
+        setup()
+
+    def tearDown(self):
+        teardown()
