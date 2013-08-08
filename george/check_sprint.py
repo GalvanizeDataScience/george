@@ -3,7 +3,7 @@ import os
 import nose.tools as n
 
 
-class TestSprint(TestCase):
+class CheckSprint(TestCase):
     def test_python_init(self):
         test_python_init()
     def test_python_files_correspond(self):
@@ -70,5 +70,5 @@ def test_has_a_test():
         raise AssertionError('There is no test directory.')
 
 def main():
-    suite = TestLoader().loadTestsFromTestCase(TestSprint)
+    suite = TestLoader().loadTestsFromTestCase(CheckSprint)
     TextTestRunner(verbosity=2).run(suite)
