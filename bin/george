@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usage() {
-  echo "$0 [init|check]"
+  echo "$0 [init-sprint|check-sprint|check-project]"
   exit 1
 }
 
