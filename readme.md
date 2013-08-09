@@ -36,20 +36,27 @@ Enter the sprint's directory.
 
     cd nytimes
 
+Start a git repository.
+
+    git init
+    touch readme.md
+    git add readme.md
+    git commit . -m initialize
+
+Put it on GitHub
+
+    hub create -p zipfian/nytimes # -p for private
+    git push -u origin master
+
 Make the data submodule
 
-    git submodule add git@github.com:zipfian/data-nytimes.git data
+    git submodule add git@github.com:zipfian/nytimes-data.git data
 
 Scaffold a sprint.
 
     mkdir using-json-apis
     cd using-json-apis
     george init-sprint
-
-Make the repository on GitHub.
-
-    git init
-    hub create -p zipfian/using-json-apis # -p for private
 
 As you're working on the sprint, check that a sprint contains all of its components.
 
