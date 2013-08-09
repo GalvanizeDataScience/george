@@ -46,9 +46,11 @@ def test_python_files_correspond():
 
 def test_shell_files_correspond():
     '.sh files in ``code`` should correspond with test directories in ``test``'
-    n.assert_true(os.path.isdir('code'))
+    if not (os.path.isdir('code') and os.path.isdir('test')):
+        return
+
     code_files = filter(lambda filename: filename.endswith('.sh'), os.listdir('code'))
-    test_files = filter(lambda filename: (not filename.startswith('.')) and filename.endswith('.sh') and os.path.isdir(os.path.join('test', filename)), os.listdir('test'))
+    test_files = filter(lambda filename: (not filename.startswith('.')) and filename.endswith('.sh'), os.listdir('test'))
     n.assert_set_equal(set(test_files), set(code_files))
 
 @n.nottest
