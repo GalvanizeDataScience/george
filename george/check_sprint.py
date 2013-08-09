@@ -20,7 +20,14 @@ def suite():
     for filename in ['readme.md', 'slides.md']:
         add_test(_suite, lambda: check_has_file(filename))
 
-    for sectionname in ['Glossary']:
+    for sectionname in [
+        'Overview',
+        'References',
+        'Goals',
+        'Assignment',
+        'Extra Credit',
+        'Glossary',
+    ]:
         add_test(_suite, lambda: check_readme_has_section(sectionname))
 
     return _suite
