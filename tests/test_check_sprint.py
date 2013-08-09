@@ -43,3 +43,28 @@ def test_test_has_a_test():
     os.mkdir('test')
     open(os.path.join('test', 'foo'), 'w').write('')
     check_sprint.test_has_a_test()
+
+def test_test_python_files_correspond():
+    setup()
+    check_sprint.test_python_files_correspond()
+
+    os.mkdir('code')
+    os.mkdir('test')
+    open(os.path.join('code', 'foo.py'), 'w').write('')
+    open(os.path.join('code', '__init__.py'), 'w').write('')
+    n.assert_raises(AssertionError, check_sprint.test_python_files_correspond)
+
+    open(os.path.join('test', 'test_foo.py'), 'w').write('')
+    check_sprint.test_python_files_correspond()
+
+def test_test_shell_files_correspond():
+    setup()
+    check_sprint.test_shell_files_correspond()
+
+    os.mkdir('code')
+    os.mkdir('test')
+    open(os.path.join('code', 'foo.sh'), 'w').write('')
+    n.assert_raises(AssertionError, check_sprint.test_shell_files_correspond)
+
+    open(os.path.join('test', 'foo.sh'), 'w').write('')
+    check_sprint.test_shell_files_correspond()
