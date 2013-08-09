@@ -22,6 +22,15 @@ George expects a particular structure.
     * C
     * ...
 
+## Installing
+Install george so you can structure and check sprints
+
+    pip install .
+
+Install hub so you can easily make repositories on GitHub.
+
+    gem install hub
+
 ## Running
 Enter the sprint's directory.
 
@@ -34,7 +43,13 @@ Make the data submodule
 Scaffold a sprint.
 
     mkdir using-json-apis
+    cd using-json-apis
     george init-sprint
+
+Make the repository on GitHub.
+
+    git init
+    hub create -p zipfian/using-json-apis # -p for private
 
 As you're working on the sprint, check that a sprint contains all of its components.
 
@@ -44,10 +59,6 @@ And check that the project is complete.
 
     cd ..
     george check-project
-
-## Installing
-
-    pip install .
 
 ## Development
 
