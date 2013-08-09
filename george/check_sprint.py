@@ -21,7 +21,7 @@ def suite():
         add_test(_suite, lambda: check_has_file(filename))
 
     for sectionname in ['Glossary']:
-        add_test(check_readme_has_section(sectionname))
+        add_test(_suite, lambda: check_readme_has_section(sectionname))
 
     return _suite
 
