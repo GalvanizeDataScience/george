@@ -62,6 +62,11 @@ As you're working on the sprint, check that a sprint contains all of its compone
 
     george check-sprint
 
+If the project has tests to drive students' exercises, you can run them.
+george runs tests with nose (python), urchin (shell) and testthat (R).
+
+    george run-tests
+
 And check that the project is complete.
 
     cd ..

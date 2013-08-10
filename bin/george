@@ -16,5 +16,9 @@ elif sys.argv[1] == 'check-sprint':
 elif sys.argv[1] == 'check-project':
     import george.check_project
     george.check_project.main()
+elif sys.argv[1] == 'run-tests':
+    import os, nose
+    os.system('nosetests')
+    os.system('test')
 else:
     usage()
