@@ -9,9 +9,13 @@ def test_has_data_submodule():
     n.assert_true(os.path.isdir('data'))
     n.assert_true(os.path.isfile(os.path.join('data', '.git')))
 
+def test_has_gitignore():
+    n.assert_true(os.path.isfile('.gitignore'))
+
 def suite():
     _suite = TestSuite()
     add_test(_suite, test_has_data_submodule)
+    add_test(_suite, test_has_gitignore)
     return _suite
 
 def main():

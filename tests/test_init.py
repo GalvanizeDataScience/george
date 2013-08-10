@@ -37,5 +37,11 @@ def test_existing_file_is_ok():
 
 def test_add_gitignore():
     setup()
+    init.gitignore()
     gitignore = open('.gitignore').read()
     n.assert_in('*.pyc', gitignore)
+
+    open('.gitignore', 'w').write('chainsaw')
+    init.gitignore()
+    gitignore = open('.gitignore').read()
+    n.assert_equal('chainsaw', gitignore)

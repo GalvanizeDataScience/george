@@ -15,6 +15,10 @@ def readme():
         fp.write('\n## %s\n' % section)
     fp.close()
 
+def gitignore():
+    if not os.path.isfile('.gitignore'):
+        open('.gitignore', 'w').write('*.pyc\n')
+
 def main():
     directories()
     readme()

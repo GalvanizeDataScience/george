@@ -14,7 +14,5 @@ def test_test_has_data_submodule():
 
 def test_test_has_gitignore():
     n.assert_raises(AssertionError, check_project.test_has_gitignore)
-    open('.gitignore', 'w').write('foo\n')
-    n.assert_raises(AssertionError, check_project.test_has_gitignore)
     open('.gitignore', 'w').write('*.pyc')
     check_project.test_has_gitignore()
