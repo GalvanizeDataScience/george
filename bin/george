@@ -17,8 +17,19 @@ elif sys.argv[1] == 'check-project':
     import george.check_project
     george.check_project.main()
 elif sys.argv[1] == 'run-tests':
-    import os, nose
+    import os
+
+    # Python tests
+    import nose
     os.system('nosetests')
-    os.system('test')
+
+    # Shell tests
+    os.system('urchin test')
+
+    # R tests
+    from rpy2.robjects.packages import importr
+    testthat = importr('testthat')
+    for filename in filter(lambda x: x.lower().endswith('.r'), os.listdir('test')):
+        testthat.test_file(os.path.join('test', filename))
 else:
     usage()

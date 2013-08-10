@@ -6,7 +6,10 @@ setuptools.setup(
     name='george',
     version='0.0.1',
     packages=setuptools.find_packages(),
-
+    install_requires = [
+        'nose',
+        'rpy2',
+    ],
     author='Thomas Levine',
     maintainer='Thomas Levine',
     maintainer_email='occurrence@thomaslevine.com',
