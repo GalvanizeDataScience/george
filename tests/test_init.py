@@ -34,3 +34,8 @@ def test_existing_file_is_ok():
     open('readme.md', 'w').write(banana)
     init.readme()
     n.assert_equal(open('readme.md').read(), banana)
+
+def test_add_gitignore():
+    setup()
+    gitignore = open('.gitignore').read()
+    n.assert_in('*.pyc', gitignore)
