@@ -17,7 +17,7 @@ def readme():
 
 def gitignore():
     if not os.path.isfile('.gitignore'):
-        open('.gitignore', 'w').write('*.pyc\n')
+        open('.gitignore', 'w').write('*.pyc\n.urchin.log\n')
 
 def main():
     directories()

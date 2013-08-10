@@ -40,6 +40,7 @@ def test_add_gitignore():
     init.gitignore()
     gitignore = open('.gitignore').read()
     n.assert_in('*.pyc', gitignore)
+    n.assert_in('.urchin.log', gitignore)
 
     open('.gitignore', 'w').write('chainsaw')
     init.gitignore()
