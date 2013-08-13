@@ -2,6 +2,11 @@ from unittest import TestSuite, TextTestRunner
 import os
 import nose.tools as n
 from _helpers import add_test
+from copy import copy
+
+def add_parametrized_test(suite, func, param):
+    _param = copy(param)
+    return add_test(suite, lambda: func(_param))
 
 def suite():
     _suite = TestSuite()
@@ -15,10 +20,10 @@ def suite():
         add_test(_suite, func)
 
     for dirname in ['code', 'lib', 'test']:
-        add_test(_suite, lambda: check_has_directory(dirname))
+        add_parametrized_test(_suite, check_has_directory, dirname)
 
     for filename in ['readme.md', 'slides.md']:
-        add_test(_suite, lambda: check_has_file(filename))
+        add_parametrized_test(_suite, check_has_file, filename)
 
     for sectionname in [
         'Overview',
@@ -28,15 +33,15 @@ def suite():
         'Extra Credit',
         'Glossary',
     ]:
-        add_test(_suite, lambda: check_readme_has_section(sectionname))
 
+        add_parametrized_test(_suite, check_readme_has_section, sectionname)
     return _suite
 
 def test_python_init():
     'If there are any python files in the code directory, there should be an __init__.py'
     n.assert_true(os.path.isdir('code'))
     if filter(lambda filename: filename.endswith('.py'), os.listdir('code')):
-        n.assert_true(os.path.isfile(os.path.join('code', '__init__.py')))
+        n.assert_true(os.path.isfile(os.path.join('code', '__init__.py')), msg = 'There should be an __init__.py')
 
 def test_python_files_correspond():
     '.py files in ``code`` should correspond with test files in ``test``'
@@ -69,10 +74,10 @@ def test_shell_test_coverage():
     pass
 
 def check_has_directory(dirname):
-    n.assert_true(os.path.isdir(dirname))
+    n.assert_true(os.path.isdir(dirname), msg = '%s should exist.' % dirname)
 
 def check_has_file(filename):
-    n.assert_true(os.path.isfile(filename))
+    n.assert_true(os.path.isfile(filename), msg = '%s should exist.' % filename)
 
 def check_readme_has_section(section):
     readme = open('readme.md').read()
