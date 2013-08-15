@@ -11,6 +11,9 @@ def test_has_data_submodule():
 
 def test_has_gitignore():
     n.assert_true(os.path.isfile('.gitignore'))
+    gitignore = open('.gitignore').read()
+    for pattern in ['*.pyc', '.urchin.log']:
+        n.assert_in(pattern, gitignore)
 
 def suite():
     _suite = TestSuite()
