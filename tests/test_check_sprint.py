@@ -68,3 +68,11 @@ def test_test_shell_files_correspond():
 
     open(os.path.join('test', 'foo.sh'), 'w').write('')
     check_sprint.test_shell_files_correspond()
+
+def test_test_makefile():
+    setup()
+    n.assert_raises(AssertionError, check_sprint.test_has_makefile)
+    open('Makefile', 'w').write()
+    n.assert_raises(AssertionError, check_sprint.test_has_makefile)
+    open('Makefile', 'w').write('.PHONY: test\ntest:\n  urchin test')
+    check_sprint.test_has_makefile()
