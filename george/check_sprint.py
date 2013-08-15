@@ -89,5 +89,11 @@ def test_has_a_test():
     else:
         raise AssertionError('There is no test directory.')
 
+def test_has_makefile():
+    n.assert_true(os.path.isfile('Makefile'), 'There should me a Makefile.')
+    makefile = open('Makefile').read()
+    n.assert_in('.PHONY', makefile)
+    n.assert_in('test:', makefile)
+
 def main():
     TextTestRunner(verbosity=2).run(suite())
