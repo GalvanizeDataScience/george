@@ -35,6 +35,7 @@ def suite():
     ]:
 
         add_parametrized_test(_suite, check_readme_has_section, sectionname)
+        add_test(_suite, check_readme_has_main_teacher)
     return _suite
 
 def test_python_init():
@@ -78,6 +79,10 @@ def check_has_directory(dirname):
 
 def check_has_file(filename):
     n.assert_true(os.path.isfile(filename), msg = '%s should exist.' % filename)
+
+def check_readme_has_main_teacher():
+    readme = open('readme.md').read()
+    n.assert_in('\nMain teacher:', readme)
 
 def check_readme_has_section(section):
     readme = open('readme.md').read()
