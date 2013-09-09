@@ -20,3 +20,12 @@ def test_test_has_gitignore():
     n.assert_raises(AssertionError, check_project.test_has_gitignore)
     open('.gitignore', 'w').write('*.pyc\n.urchin.log')
     check_project.test_has_gitignore()
+
+def test_test_has_license():
+    n.assert_raises(AssertionError, check_project.test_has_license)
+    open('LICENSE', 'w').write('')
+    n.assert_raises(AssertionError, check_project.test_has_license)
+    open('LICENSE', 'w').write('AGPL')
+    n.assert_raises(AssertionError, check_project.test_has_license)
+    open('LICENSE', 'w').write('BSD')
+    check_project.test_has_license()
