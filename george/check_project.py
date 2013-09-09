@@ -15,6 +15,11 @@ def test_has_gitignore():
     for pattern in ['*.pyc', '.urchin.log']:
         n.assert_in(pattern, gitignore)
 
+def test_has_license():
+    n.assert_true(os.path.isfile('LICENSE'))
+    license = open('LICENSE').read()
+    n.assert_in('BSD', license)
+
 def suite():
     _suite = TestSuite()
     add_test(_suite, test_has_data_submodule)
