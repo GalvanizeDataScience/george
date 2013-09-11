@@ -35,7 +35,6 @@ def suite():
     ]:
 
         add_parametrized_test(_suite, check_readme_has_section, sectionname)
-    add_test(_suite, check_readme_has_main_teacher)
     return _suite
 
 def test_python_init():
